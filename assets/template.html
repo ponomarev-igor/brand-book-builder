@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{{BRAND_NAME}} — Brand Book</title>
+
+<!--
+  ШАБЛОН BRAND BOOK BUILDER
+  Замени все {{PLACEHOLDER}} токены реальным контентом.
+  Блоки с комментарием "-- ПОВТОРЯЕМЫЙ БЛОК --" копируй нужное число раз
+  (5 свотчей палитры фиксировано, voice/rules — 3-5 штук по факту интервью)
+  и удали лишние копии. Не оставляй ни одного {{...}} в финальном файле.
+
+  <link> на Google Fonts ниже — замени FONT+NAME на реальные выбранные
+  шрифты (пробел -> +), формат:
+  https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Inter:wght@400;600&display=swap
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family={{HEADLINE_FONT_URL}}:wght@400;700&family={{BODY_FONT_URL}}:wght@400;600&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --bg: {{COLOR_BG}};
+    --surface: {{COLOR_SURFACE}};
+    --text: {{COLOR_TEXT}};
+    --text-secondary: {{COLOR_TEXT_SECONDARY}};
+    --accent: {{COLOR_ACCENT}};
+    --font-head: '{{HEADLINE_FONT_NAME}}', sans-serif;
+    --font-body: '{{BODY_FONT_NAME}}', sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    line-height: 1.55;
+  }
+
+  .page {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 64px 32px 96px;
+  }
+
+  header.brand-header {
+    margin-bottom: 56px;
+  }
+
+  header.brand-header .brand-name {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 56px;
+    line-height: 1.05;
+    margin: 0 0 12px;
+  }
+
+  header.brand-header .tagline {
+    color: var(--text-secondary);
+    font-size: 18px;
+    margin: 0;
+    max-width: 560px;
+  }
+
+  section {
+    margin-bottom: 56px;
+  }
+
+  h2.section-title {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 22px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    margin: 0 0 24px;
+  }
+
+  /* Палитра */
+  .palette-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 16px;
+  }
+
+  .swatch {
+    border-radius: 14px;
+    overflow: hidden;
+    background: var(--surface);
+  }
+
+  .swatch .swatch-color {
+    height: 90px;
+  }
+
+  .swatch .swatch-meta {
+    padding: 12px 14px;
+  }
+
+  .swatch .swatch-name {
+    font-weight: 600;
+    font-size: 14px;
+    margin: 0 0 4px;
+  }
+
+  .swatch .swatch-hex {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  /* Типографика */
+  .type-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .type-card {
+    background: var(--surface);
+    border-radius: 14px;
+    padding: 28px;
+  }
+
+  .type-card .type-role {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-secondary);
+    margin: 0 0 12px;
+  }
+
+  .type-card .type-sample-head {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 1.1;
+    margin: 0 0 12px;
+  }
+
+  .type-card .type-sample-body {
+    font-family: var(--font-body);
+    font-size: 17px;
+    margin: 0 0 12px;
+  }
+
+  .type-card .type-font-name {
+    font-weight: 600;
+    font-size: 15px;
+    margin: 0 0 4px;
+  }
+
+  .type-card .type-rationale {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  /* Голос бренда */
+  .voice-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+  }
+
+  .voice-card {
+    background: var(--surface);
+    border-radius: 14px;
+    padding: 22px;
+  }
+
+  .voice-card .voice-title {
+    font-weight: 600;
+    font-size: 16px;
+    margin: 0 0 8px;
+  }
+
+  .voice-card .voice-desc {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  /* Правила / табу */
+  ol.rules-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  ol.rules-list li {
+    background: var(--surface);
+    border-radius: 12px;
+    padding: 16px 20px;
+    font-size: 15px;
+    display: flex;
+    gap: 14px;
+  }
+
+  ol.rules-list li .rule-num {
+    font-family: var(--font-head);
+    color: var(--accent);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  @media print {
+    body { background: var(--bg); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .page { padding: 32px; }
+  }
+
+  @media (max-width: 600px) {
+    header.brand-header .brand-name { font-size: 40px; }
+    .type-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="brand-header">
+    <h1 class="brand-name">{{BRAND_NAME}}</h1>
+    <p class="tagline">{{TAGLINE}}</p>
+  </header>
+
+  <section>
+    <h2 class="section-title">Палитра</h2>
+    <div class="palette-grid">
+      <!-- ПОВТОРЯЕМЫЙ БЛОК: ровно 5 свотчей — Background, Surface, Text, Text Secondary, Accent -->
+      <div class="swatch">
+        <div class="swatch-color" style="background:{{COLOR_BG}}"></div>
+        <div class="swatch-meta">
+          <p class="swatch-name">{{COLOR_BG_NAME}}</p>
+          <p class="swatch-hex">{{COLOR_BG}}</p>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:{{COLOR_SURFACE}}"></div>
+        <div class="swatch-meta">
+          <p class="swatch-name">{{COLOR_SURFACE_NAME}}</p>
+          <p class="swatch-hex">{{COLOR_SURFACE}}</p>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:{{COLOR_TEXT}}"></div>
+        <div class="swatch-meta">
+          <p class="swatch-name">{{COLOR_TEXT_NAME}}</p>
+          <p class="swatch-hex">{{COLOR_TEXT}}</p>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:{{COLOR_TEXT_SECONDARY}}"></div>
+        <div class="swatch-meta">
+          <p class="swatch-name">{{COLOR_TEXT_SECONDARY_NAME}}</p>
+          <p class="swatch-hex">{{COLOR_TEXT_SECONDARY}}</p>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:{{COLOR_ACCENT}}"></div>
+        <div class="swatch-meta">
+          <p class="swatch-name">{{COLOR_ACCENT_NAME}}</p>
+          <p class="swatch-hex">{{COLOR_ACCENT}}</p>
+        </div>
+      </div>
+      <!-- если есть второй акцент со своей ролью — добавь шестой свотч по этому же образцу -->
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Типографика</h2>
+    <div class="type-grid">
+      <div class="type-card">
+        <p class="type-role">Заголовки</p>
+        <p class="type-sample-head">{{HEADLINE_SAMPLE_WORD}}</p>
+        <p class="type-font-name">{{HEADLINE_FONT_NAME}}</p>
+        <p class="type-rationale">{{HEADLINE_RATIONALE}}</p>
+      </div>
+      <div class="type-card">
+        <p class="type-role">Текст</p>
+        <p class="type-sample-body">{{BODY_SAMPLE_SENTENCE}}</p>
+        <p class="type-font-name">{{BODY_FONT_NAME}}</p>
+        <p class="type-rationale">{{BODY_RATIONALE}}</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Голос бренда</h2>
+    <div class="voice-grid">
+      <!-- ПОВТОРЯЕМЫЙ БЛОК: 3-5 карточек по факту интервью -->
+      <div class="voice-card">
+        <p class="voice-title">{{VOICE_PRINCIPLE_1_TITLE}}</p>
+        <p class="voice-desc">{{VOICE_PRINCIPLE_1_DESC}}</p>
+      </div>
+      <div class="voice-card">
+        <p class="voice-title">{{VOICE_PRINCIPLE_2_TITLE}}</p>
+        <p class="voice-desc">{{VOICE_PRINCIPLE_2_DESC}}</p>
+      </div>
+      <div class="voice-card">
+        <p class="voice-title">{{VOICE_PRINCIPLE_3_TITLE}}</p>
+        <p class="voice-desc">{{VOICE_PRINCIPLE_3_DESC}}</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Правила и табу</h2>
+    <ol class="rules-list">
+      <!-- ПОВТОРЯЕМЫЙ БЛОК: 3-5 правил по факту интервью -->
+      <li><span class="rule-num">01</span><span>{{RULE_1}}</span></li>
+      <li><span class="rule-num">02</span><span>{{RULE_2}}</span></li>
+      <li><span class="rule-num">03</span><span>{{RULE_3}}</span></li>
+    </ol>
+  </section>
+
+</div>
+</body>
+</html>
