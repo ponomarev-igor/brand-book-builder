@@ -47,7 +47,7 @@ brand-book-builder/
 
 ## Автор
 
-Сделано самостоятельно [Игорем Пономарёвым](https://igorponomarev.com) · [@the.igorponomarev](https://instagram.com/the.igorponomarev)
+Сделано самостоятельно [Игорем Пономаревым](https://igorponomarev.com) · [@the.igorponomarev](https://instagram.com/the.igorponomarev)
 
 ## Лицензия
 
