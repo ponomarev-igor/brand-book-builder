@@ -1,5 +1,7 @@
 # Brand Book Builder
 
+> 🚧 В разработке — базовая версия рабочая, будет дорабатываться.
+
 Claude Skill, который за 10-15 минут интервью собирает личный бренд-бук —
 готовый одностраничный HTML-документ с палитрой, шрифтами, голосом бренда
 и правилами. Без дизайнерского образования, без агентского документа на
@@ -45,7 +47,7 @@ brand-book-builder/
 
 ## Автор
 
-[Игорь Пономарёв](https://igorponomarev.com) · [@the.igorponomarev](https://instagram.com/the.igorponomarev)
+Сделано самостоятельно [Игорем Пономарёвым](https://igorponomarev.com) · [@the.igorponomarev](https://instagram.com/the.igorponomarev)
 
 ## Лицензия
 
